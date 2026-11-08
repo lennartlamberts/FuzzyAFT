@@ -1,0 +1,7 @@
+extends: base.yaml
+
+dataset:
+  name: metabric
+
+logistic_hazard:
+  num_durations: 24

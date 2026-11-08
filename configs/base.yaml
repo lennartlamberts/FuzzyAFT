@@ -1,0 +1,70 @@
+experiment:
+  seeds: [0, 1, 2, 3, 4]
+
+dataset:
+  split: {train: 0.70, val: 0.15, test: 0.15}
+  stratify_by_censoring: true
+  standardize: true
+  log_time: true
+  log_time_eps: 1.0e-8
+
+model:
+  hidden_sizes: [128, 128, 128]
+  dropout: 0.1
+
+training:
+  learning_rate: 0.001
+  batch_size: 256
+  max_epochs: 200
+  device: cpu
+  early_stopping:
+    patience: 20
+    min_delta: 0.0
+
+possibility:
+  alpha: 0.1
+  gamma: 0.1
+  eta: 1.0
+
+objective:
+  lambda_candidates: [0.0, 0.0001, 0.001, 0.01, 0.05, 0.1]
+  fuzzy_fixed_lambda: 0.01
+  gaussian_hybrid_lambda: 0.01
+
+gaussian:
+  sigma_param: log
+  dropout: 0.1
+
+mc_dropout:
+  n_samples: 30
+
+deep_surv: &neural_baseline
+  learning_rate: 0.001
+  batch_size: 256
+  max_epochs: 200
+  patience: 20
+  dropout: 0.1
+
+deep_hit:
+  <<: *neural_baseline
+  num_time_bins: 32
+
+logistic_hazard:
+  <<: *neural_baseline
+  discretization_scheme: quantiles
+
+rsf:
+  n_estimators: 200
+  max_depth: null
+  max_features: sqrt
+  min_samples_split: 10
+  min_samples_leaf: 15
+  n_jobs: -1
+
+ood:
+  covariate: 0
+  quantile: 0.75
+  scoring:
+    score_type: width_tau
+    alpha: 0.1
+    gamma: 0.1

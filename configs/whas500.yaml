@@ -1,0 +1,7 @@
+extends: base.yaml
+
+dataset:
+  name: whas500
+
+logistic_hazard:
+  num_durations: 12

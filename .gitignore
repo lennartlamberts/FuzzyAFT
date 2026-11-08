@@ -1,0 +1,10 @@
+.DS_Store
+.venv/
+.pytest_cache/
+__pycache__/
+*.egg-info/
+*.py[cod]
+
+results/tables/
+*.pt
+*.pth

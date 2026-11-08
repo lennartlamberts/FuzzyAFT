@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying paper."
+title: "fuzzy-aft-paper"
+type: software
+version: 1.0.0
+license: MIT
+authors:
+  - family-names: Lamberts
+    given-names: Lennart
+  - family-names: Bender
+    given-names: Andreas
+  - family-names: Bischl
+    given-names: Bernd
+  - family-names: Rezaei
+    given-names: Mina
+preferred-citation:
+  type: conference-paper
+  title: "Robust Survival Analysis via Fuzzy Interval Learning"
+  authors:
+    - family-names: Lamberts
+      given-names: Lennart
+    - family-names: Bender
+      given-names: Andreas
+    - family-names: Bischl
+      given-names: Bernd
+    - family-names: Rezaei
+      given-names: Mina
+  year: 2026
+  conference:
+    name: "35th ACM International Conference on Information and Knowledge Management"
+  doi: 10.1145/3799682.3839863
