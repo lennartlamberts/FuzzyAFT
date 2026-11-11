@@ -6,5 +6,6 @@ __pycache__/
 *.py[cod]
 
 results/tables/
+results/runs/
 *.pt
 *.pth

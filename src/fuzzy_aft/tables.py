@@ -41,7 +41,8 @@ LABEL = {
 def _read(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(
-            f"Missing {path}. Run the corresponding reproduce.py experiment first."
+            f"Missing {path}. Run the corresponding reproduce.py experiment first "
+            "or select the archived paper runs with --runs-dir results/paper_runs."
         )
     return pd.read_csv(path)
 
@@ -310,6 +311,11 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Create the paper tables and complete tables for both datasets."
     )
+    parser.add_argument(
+        "--runs-dir",
+        type=Path,
+        help="Directory containing per-seed run CSVs (default: results/runs).",
+    )
     parser.add_argument("--results-dir", type=Path, default=Path("results"))
     parser.add_argument("--compare-reference", action="store_true")
     return parser.parse_args()
@@ -317,7 +323,7 @@ def _parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = _parse_args()
-    runs = args.results_dir / "runs"
+    runs = args.runs_dir or args.results_dir / "runs"
     output = args.results_dir / "tables"
     _in_domain(runs, "metabric", 1, output)
     _in_domain(runs, "whas500", 2, output)

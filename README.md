@@ -138,12 +138,22 @@ python reproduce.py ablations   # Both datasets; paper Table 7 uses METABRIC
 All reported experiments use seeds 0--4. For an installation check without
 reproducing paper values, add `--quick` (one seed, two epochs).
 
-Raw per-seed results are written to `results/runs/`. Every run filename ends
-in `_metabric` or `_whas500`, so results for one dataset never overwrite the
-other. `make_tables.py` writes the original numbered paper tables to
-`results/tables/` and the complete dataset-specific tables to
-`results/tables/complete/`. The published aggregate values are included in
-`results/reference/` for comparison.
+New per-seed results are written to the git-ignored `results/runs/`. Every run
+filename ends in `_metabric` or `_whas500`, so results for one dataset never
+overwrite the other. The checked-in per-seed paper-experiment runs are archived
+separately in `results/paper_runs/` and are never overwritten by `reproduce.py`.
+
+`make_tables.py` uses new runs from `results/runs/` by default. To generate
+tables directly from the archived paper runs without rerunning the experiments,
+use:
+
+```bash
+python make_tables.py --runs-dir results/paper_runs --compare-reference
+```
+
+The command writes the original numbered paper tables to `results/tables/` and
+the complete dataset-specific tables to `results/tables/complete/`. The
+published aggregate values are included in `results/reference/` for comparison.
 
 ## Table map
 
@@ -183,7 +193,9 @@ The published Table 6 values were produced with a level-matched 90% fuzzy cut,
 ```text
 configs/          model and experiment settings
 src/fuzzy_aft/    models, losses, training, metrics, and experiments
+results/paper_runs archived per-seed paper-experiment runs
 results/reference published aggregate values
+results/runs       git-ignored workspace for newly generated runs
 tests/            mathematical and pipeline smoke tests
 reproduce.py      experiment entry point
 make_tables.py    paper and complete tables from per-seed results

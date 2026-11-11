@@ -13,6 +13,24 @@ def test_all_reference_tables_are_present() -> None:
     ]
 
 
+def test_all_paper_runs_are_archived_separately() -> None:
+    root = Path(__file__).parents[1]
+    assert sorted(path.name for path in (root / "results" / "paper_runs").glob("*.csv")) == [
+        "ablation_metabric.csv",
+        "ablation_whas500.csv",
+        "component_ood_metabric.csv",
+        "component_ood_whas500.csv",
+        "component_scarcity_metabric.csv",
+        "component_scarcity_whas500.csv",
+        "data_scarcity_metabric.csv",
+        "data_scarcity_whas500.csv",
+        "in_domain_metabric.csv",
+        "in_domain_whas500.csv",
+        "ood_metabric.csv",
+        "ood_whas500.csv",
+    ]
+
+
 def test_table_writer_aggregates_seed_results(tmp_path: Path) -> None:
     raw = pd.DataFrame(
         {"model": ["fuzzy_aft", "fuzzy_aft"], "cindex": [0.6, 0.8]}
