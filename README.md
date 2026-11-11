@@ -8,7 +8,7 @@ Analysis via Fuzzy Interval Learning** (CIKM 2026).
 Survival models can remain confidently precise even when they encounter
 unfamiliar patients or have only limited training data. Fuzzy-AFT addresses
 this by representing each prediction as a possibility distribution whose
-width is learned directly from censored observations.
+width is directly optimized.
 
 For an input `x`, Fuzzy-AFT predicts a location `mu(x)` and a positive scale
 `tau(x)` on log-time. Together they define the Gaussian-shaped possibility
